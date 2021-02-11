@@ -12,7 +12,7 @@
               <v-list-item-title class="headline mb-1">
                 {{ item.name }}
               </v-list-item-title>
-              <v-list-item-content>{{ item.description }}</v-list-item-content>
+              <v-list-item-content>{{ item.description }} Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem pariatur dolorum at fugit sunt, voluptas aperiam ipsam voluptatem, nesciunt voluptatibus ullam molestiae rerum ipsum rem assumenda veniam! Maiores, nobis odit.</v-list-item-content>
             </v-list-item-content>
 
             <v-list-item-avatar tile size="80" color="grey">
