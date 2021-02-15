@@ -13,8 +13,8 @@
     </v-parallax>
 
     <v-row align="center">
-      <v-col v-for="(result, i) in results" :key="i" cols="4">
-        <v-card class="mx-auto products-card" max-width="344">
+      <v-col v-for="(result, i) in results" :key="i" md="4" sm="2">
+        <v-card class="mx-auto fav-products">
           <v-card-text>
             {{ result.name }}
             <v-btn class="float-right" outlined fab small color="green">
@@ -75,4 +75,14 @@ export default {
   box-shadow: 0 2px 12px 0 rgba(195, 191, 185, 0.48), 0 2px 2px 0 rgba(221, 218, 213, 0.36)
   height: auto
   padding: 10px
+
+.fav-products
+  border-radius: 30px !important
+  box-shadow: 0 2px 12px 0 rgba(195, 191, 185, 0.48), 0 2px 2px 0 rgba(221, 218, 213, 0.36)
+  height: 200px
+  padding: 10px
+  max-width: 344px
+  @media (max-width: 600px)
+    max-width: 214px
+
 </style>

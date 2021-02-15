@@ -18,8 +18,6 @@
       </v-row>
     </v-parallax>
     <v-card
-      height="150"
-      max-width="444"
       class="mt-10 pa-10 account-card mx-auto"
     >
       <v-text-field v-model="email" label="E-mail" rounded dense filled light color="grey">
@@ -51,8 +49,11 @@ export default {
 .account-card
   border-radius: 30px !important
   box-shadow: 0 2px 12px 0 rgba(195, 191, 185, 0.48), 0 2px 2px 0 rgba(221, 218, 213, 0.36)
-  height: auto
+  height: 150px
   padding: 10px
+  max-width: 444px
+  @media (max-width: 600px)
+    max-width: 344px !important
 
 .user-text
   color: #F57F17

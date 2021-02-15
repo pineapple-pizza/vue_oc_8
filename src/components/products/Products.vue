@@ -2,7 +2,7 @@
   <div>
     <v-parallax dark src="@/assets/photo-food.jpeg" id="parallax-home">
       <v-row no-gutters align="center" justify="center">
-        <v-col class="text-center" cols="6">
+        <v-col class="text-center" md="6">
           <v-card class="search-form">
 
           <h1 class="display-1 font-weight-thin mb-4">
@@ -63,4 +63,7 @@ export default {
   box-shadow: 0 2px 12px 0 rgba(195, 191, 185, 0.48), 0 2px 2px 0 rgba(221, 218, 213, 0.36)
   height: 300px
   padding: 80px
+  @media (max-width: 600px)
+    height: auto
+    padding: 40px
 </style>

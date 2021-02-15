@@ -15,8 +15,8 @@
         ></v-text-field>
       </v-col>
 
-      <v-col cols="3">
-          <div class="pb-7">
+      <v-col md="3">
+          <div class="pb-md-7 pb-sm-3">
           <v-btn
             depressed
             rounded

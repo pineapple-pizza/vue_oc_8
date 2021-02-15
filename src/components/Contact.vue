@@ -4,7 +4,7 @@
       <h1 class="display-1 font-weight-thin mt-6 mb-6 text-center">
         Contactez-nous !
       </h1>
-      <h3 class="text-center">test</h3>
+      <h3 class="text-center">N'hésitez pas à nous contacter, on vous répondra le plus vite possible.</h3>
       <v-row justify="center">
         <v-col class="text-center">
           <v-icon large color="blue">mdi-phone</v-icon> <br>

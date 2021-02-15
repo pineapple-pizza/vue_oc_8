@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 class="display-1 font-weight-thin mt-6 mb-6 text-center">
-      Notre histoire inoubliable Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, molestiae iure veritatis quibusdam rerum et! In molestias natus amet repellat repudiandae, veritatis veniam porro omnis accusamus pariatur consequuntur est tempore.
+      Notre histoire inoubliable 
     </h1>
 
     <v-row justify="center">
@@ -12,7 +12,7 @@
               <v-list-item-title class="headline mb-1">
                 {{ item.name }}
               </v-list-item-title>
-              <v-list-item-content>{{ item.description }} Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem pariatur dolorum at fugit sunt, voluptas aperiam ipsam voluptatem, nesciunt voluptatibus ullam molestiae rerum ipsum rem assumenda veniam! Maiores, nobis odit.</v-list-item-content>
+              <v-list-item-content>{{ item.description }} </v-list-item-content>
             </v-list-item-content>
 
             <v-list-item-avatar tile size="80" color="grey">
@@ -36,13 +36,13 @@ export default {
           name: "Colette",
           img: require("@/assets/persona3.png"),
           description:
-            "texte lorem ipsum dolor sit amet, consectetur adipiscing elit. cras purus orci, ornare sit amet nulla in, condimentum sollicitudin leo. ",
+            "Il faut juste apprendre ou réapprendre à manger “simplement”, c’est à dire avec de bons produits et surtout, cuisinés par nous-même pour éviter le surplus de sucre et de sel.",
         },
         {
           name: "Rémy",
           img: require("@/assets/persona4.png"),
           description:
-            "texte lorem ipsum dolor sit amet, consectetur adipiscing elit. cras purus orci, ornare sit amet nulla in, condimentum sollicitudin leo.",
+            "Prenez vous 30min en moyenne pour vous faire un bon repas, du temps qu'on passe devant la télé ou devant son téléphone mais c’est pour la bonne cause. Notre santé est en jeu !",
         },
       ],
     };

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="pa-15 signin-bg">
+    <div class="pa-15 login-mobile">
       <h2 class="display-1 font-weight-thin mt-6 mb-6 text-center">
         Se connecter
       </h2>
@@ -121,4 +121,12 @@ export default {
   height: 310px
   width: 600px
   padding: 30px
+  @media (max-width: 600px)
+    height: auto
+    padding: 15px
+
+.login-mobile
+  @media (max-width: 600px)
+    padding-left: 20px !important
+    padding-right: 20px !important
 </style>

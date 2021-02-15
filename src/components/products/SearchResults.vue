@@ -15,8 +15,8 @@
     </v-parallax>
 
     <v-row align="center" class="row-search">
-      <v-col v-for="(result, i) in results.slice(0, 6)" :key="i" cols="4">
-        <v-card class="mx-auto results-card" max-width="344">
+      <v-col v-for="(result, i) in results" :key="i" md="4">
+        <v-card class="mx-auto results-card">
           <v-card-text>
             {{ result.name }}
             <v-btn class="float-right" outlined fab small color="green">
@@ -24,6 +24,7 @@
             </v-btn>
           </v-card-text>
           <v-card-actions class="mt-10">
+            <v-row justify="space-around">
             <v-btn
               rounded
               depressed
@@ -48,6 +49,7 @@
             >
               modifier
             </v-btn>
+            </v-row>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -157,10 +159,16 @@ export default {
   border-radius: 30px !important
   box-shadow: 0 2px 12px 0 rgba(195, 191, 185, 0.48), 0 2px 2px 0 rgba(221, 218, 213, 0.36)
   height: 170px
+  width: 344px
   padding: 10px
+  @media (max-width: 600px)
+    width: 250px
+    height: auto
 
 .btn-edit
   width: 150px
+  @media (max-width: 600px)
+    margin: 10px
 
 .test
   // height: 50px
@@ -168,4 +176,5 @@ export default {
 .row-search
   margin-bottom: 150px
   margin-top: 50px
+
 </style>

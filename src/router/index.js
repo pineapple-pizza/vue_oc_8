@@ -9,6 +9,7 @@ import MyProducts from '@/components/products/MyProducts.vue'
 import SearchResults from '@/components/products/SearchResults.vue'
 import SingleProduct from '@/components/products/SingleProduct.vue'
 import Account from '@/components/Account.vue'
+import Terms from '@/components/Terms.vue'
 import store from '@/store'
 
 Vue.use(VueRouter)
@@ -96,6 +97,11 @@ const routes = [
     name: 'email-verify',
     component: token_validation
   },
+  {
+    path: '/terms',
+    name: 'Terms',
+    component: Terms
+  }
 ]
 
 
