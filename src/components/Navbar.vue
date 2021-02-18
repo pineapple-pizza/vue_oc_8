@@ -14,12 +14,17 @@
       <v-spacer></v-spacer>
       <div class="toolbar-links">
         <template v-if="authenticated">
-          <v-btn depressed to="/search" name="search" class="hidden-sm-and-down">
+          <!-- <v-btn depressed to="/search" name="search" class="hidden-sm-and-down">
             chercher
-          </v-btn>
-          <v-btn icon x-large to="/search" name="search" class="hidden-sm-and-up">
+          </v-btn> -->
+          <!-- <v-btn icon x-large to="/search" name="search" class="hidden-sm-and-up">
             <v-icon>mdi-magnify</v-icon>
-          </v-btn>
+          </v-btn> -->
+          <div class="auth-edit">
+
+          <search-bar class="search-bar-edit"/>
+          <div class="float-right">
+
           <v-btn icon x-large to="/profile" name="profile_account"
             ><v-icon>mdi-account</v-icon></v-btn
           >
@@ -29,6 +34,9 @@
           <v-btn icon x-large to="/logout" @click.prevent="signOut">
             <v-icon>mdi-logout</v-icon>
           </v-btn>
+          </div>
+          </div>
+
         </template>
         <template v-else>
           <v-btn text large to="/login" name="login">log in</v-btn>
@@ -41,10 +49,13 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import Search from "@/components/Search.vue";
 
 export default {
   name: "Navbar",
-  components: {},
+  components: {
+    'search-bar': Search
+  },
   data() {
     return {
       greeting: "Pur Beurre",
@@ -104,4 +115,14 @@ export default {
     padding-right: 0
     margin-right: 0
     margin-left: 0
+
+.search-bar-edit
+  padding-top: 74px
+  // margin-right: 81px
+  height: 75px
+  width: 390px
+
+.auth-edit
+  padding-bottom: 125px
+  width: 600px
 </style>

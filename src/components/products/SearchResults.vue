@@ -14,6 +14,10 @@
       </v-row>
     </v-parallax>
 
+    <v-alert type="success" v-if="show" dismissible>
+      Favori ajouté avec succès!
+    </v-alert>
+
     <v-row align="center" class="row-search">
       <v-col v-for="(result, i) in results" :key="i" md="4">
         <v-card class="mx-auto results-card">
@@ -25,37 +29,37 @@
           </v-card-text>
           <v-card-actions class="mt-10">
             <v-row justify="space-around">
-            <v-btn
-              rounded
-              depressed
-              dark
-              color="amber accent-3"
-              class="btn-edit"
-              @click="learnMore(result.id)"
-              name="learn_more"
-            >
-              en savoir +
-            </v-btn>
-            <v-btn
-              rounded
-              depressed
-              color="orange darken-2"
-              class="btn-edit"
-              dark
-              @click="
-                dialog = true;
-                getId(result.id);
-              "
-            >
-              modifier
-            </v-btn>
+              <v-btn
+                rounded
+                depressed
+                dark
+                color="amber accent-3"
+                class="btn-edit"
+                @click="learnMore(result.id)"
+                name="learn_more"
+              >
+                en savoir +
+              </v-btn>
+              <v-btn
+                rounded
+                depressed
+                color="orange darken-2"
+                class="btn-edit"
+                dark
+                @click="
+                  dialog = true;
+                  getId(result.id);
+                "
+              >
+                modifier
+              </v-btn>
             </v-row>
           </v-card-actions>
         </v-card>
       </v-col>
     </v-row>
 
-    <v-row justify="center">
+    <!-- <v-row justify="center">
       <v-dialog v-model="dialog" max-width="405px">
         <v-card>
           <v-card-title>Sélectionner un produit de substitution </v-card-title>
@@ -68,14 +72,63 @@
             >
             </v-checkbox>
             <div class="pl-9">nutriscore : {{ result.nutrition_grade }}</div>
-          </v-card-text>
           <v-divider></v-divider>
           <v-card-actions>
 
             <v-btn color="orange accent-3" text @click="dialog = false">
               Fermer
             </v-btn>
-            <v-btn color="orange accent-3" text @click="editSub(sub_id)">
+            <v-btn color="orange accent-3" text @click="editSub(result.id)">
+              Enregistrer
+            </v-btn>
+          </v-card-actions>
+          </v-card-text>
+        </v-card>
+      </v-dialog>
+    </v-row> -->
+
+    <v-row justify="center">
+      <v-dialog v-model="dialog" max-width="405px">
+        <v-card>
+          <v-card-title>Sélectionner un produit de substitution </v-card-title>
+          <v-divider></v-divider>
+          <v-card-text v-for="(result, i) in results" :key="i" class="">
+            <!-- <form @submit.prevent="getSubId(result.id)"> -->
+
+            <!-- <v-checkbox
+              color="orange darken-3"
+              :label="result.name"
+              :value="result"
+              :disabled="selectedItem.length > 1 && selectedItem.indexOf(result) === -1"
+              @change="getSubId(result.id)"
+              v-model="selectedItem"
+            >
+            </v-checkbox> -->
+            <v-row justify="justify">
+              <label>
+                <input
+                  color="orange darken-3"
+                  type="checkbox"
+                  v-model="selectedItem"
+                  :value="result.name"
+                  :disabled="
+                    selectedItem.length > 0 &&
+                      selectedItem.indexOf(result.name) === -1
+                  "
+                  @change="getSubId(result.id)"
+                />
+              </label>
+              <div class="pl-9">name : {{ result.name }}</div>
+              <div class="pl-9">nutriscore : {{ result.nutrition_grade }}</div>
+            </v-row>
+            <!-- </form> -->
+          </v-card-text>
+          <v-divider></v-divider>
+          <v-card-actions>
+            <v-btn color="orange accent-3" text @click="dialog = false">
+              Fermer
+            </v-btn>
+            <v-btn color="orange accent-3" text type="submit" @click="editSub">
               Enregistrer
             </v-btn>
           </v-card-actions>
@@ -87,6 +140,7 @@
 
 <script>
 import axios from "@/plugins/axios.js";
+import { mapGetters } from "vuex";
 
 export default {
   name: "SearchResults",
@@ -100,18 +154,21 @@ export default {
       sub_id: null,
       searched_prod: "",
       nutrition_grade: "",
+      show: false,
+      selectedItem: [],
     };
   },
   created() {
     this.results = this.$route.params.data;
     this.searched_prod = this.$route.params.search;
-    var i;
-    for (i = 0; i < this.results.length; i++) {
-      this.sub_id = this.results[i].id;
-      this.nutrition_grade = this.results[i].nutrition_grade;
-      console.log("created id ", this.sub_id);
-    }
-    // this.sub_id = this.$route.params.data.results[0].id
+    // console.log('resultats: ', this.results)
+  },
+  computed: {
+    ...mapGetters({
+      authenticated: "auth/authenticated",
+      user: "auth/user",
+      email: "auth/email",
+    }),
   },
   methods: {
     async learnMore(id) {
@@ -121,31 +178,25 @@ export default {
         name: "singleProduct",
         params: { data: this.results, id: id },
       });
-      console.log(res);
     },
-    async editSub(id) {
-      // let old_id = this.getId();
-      this.prod_id = this.getId();
-      console.log("edit sub id 2 ", id);
-      console.log("edit sub id ", this.prod_id);
+    async editSub() {
+      console.log("user", this.user);
 
-      var i;
-      for (i = 0; i < this.results.length; i++) {
-        this.sub_id = this.results[i].id;
-        console.log("created id ", this.sub_id);
-      }
-
-      const res = await axios.patch("products/" + id, {
-        substitut: this.sub_id,
+      const res = await axios.post("products/favorites/", {
+        user: this.email,
+        sub_product: this.sub_id,
+        old_product: this.prod_id,
       });
-      console.log(res);
+      this.dialog = false;
+      this.show = true;
+      console.log("res sub", res);
     },
     getId(id) {
       this.prod_id = id;
-      //   console.log("get id ", id);
-      //   axios.put("products/" + id, {
-      //     substitut: this.sub_id,
-      //   });
+    },
+    getSubId(id) {
+      this.sub_id = id;
+      console.log("sub id", this.sub_id);
     },
   },
 };
@@ -176,5 +227,4 @@ export default {
 .row-search
   margin-bottom: 150px
   margin-top: 50px
-
 </style>

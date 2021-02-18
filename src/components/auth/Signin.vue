@@ -69,6 +69,7 @@
         </v-card-text>
       </v-card>
     </div>
+   <p class="text-center">{{validation_message}}</p> 
   </div>
 </template>
 
@@ -109,17 +110,17 @@ export default {
     email: "",
     password: "",
     username: "",
+    validation_message: ''
   }),
   methods: {
     async signin() {
+      // registration method
       const res = await axios.post("api/register/", {
         email: this.email,
         username: this.username,
         password: this.password,
       });
-      this.$router.replace({
-        name: "login",
-      });
+      this.validation_message = 'Inscription faite, validez votre adresse email! '
       console.log("res: ", res);
     },
   },

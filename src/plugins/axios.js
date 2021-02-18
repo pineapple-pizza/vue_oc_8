@@ -45,10 +45,7 @@ import axios from "axios";
 
 
 export default axios.create({
-  baseURL : 'https://oc-django-api.herokuapp.com/',
-//   headers: {
-//     Authorization: 'Bearer ' + localStorage.getItem('token')
-// }
+  baseURL : 'https://django-api-2.herokuapp.com/',
 })
 
 

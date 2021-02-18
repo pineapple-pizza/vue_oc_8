@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <v-row align="center" justify="center" no-gutters>
       <v-col>
         <v-text-field
@@ -16,8 +15,8 @@
       </v-col>
 
       <v-col md="3">
-          <div class="pb-md-7 pb-sm-3">
-          <v-btn
+        <div class="pb-md-7 pb-sm-3">
+          <!-- <v-btn
             depressed
             rounded
             color="amber lighten-1"
@@ -25,8 +24,18 @@
             type="submit"
             @click="getProd()"
             name="search_submit"
-            >Chercher</v-btn>
-          </div>
+            >Chercher</v-btn> -->
+          <v-btn
+            icon
+            x-large
+            name="search_submit"
+            @click="getProd()"
+            color="amber lighten-1"
+            dark
+          >
+            <v-icon>mdi-magnify</v-icon>
+          </v-btn>
+        </div>
       </v-col>
     </v-row>
   </div>
@@ -42,7 +51,7 @@ export default {
       results: [],
       search: null,
       categories: [],
-      randomProd: ''
+      randomProd: "",
     };
   },
   computed: {
@@ -54,9 +63,7 @@ export default {
   methods: {
     async getProd() {
       const res = await axios.get("products/?search=" + this.search);
-      this.results = res.data.results;
-    //   var randomProd = Math.floor(Math.random() * this.results.length);
-    //   this.randomProd = this.results[randomProd]
+      this.results = res.data;
       this.$router.push({
         name: "searchResults",
         params: { data: this.results, search: this.search.replace(/ /g, "-") },
@@ -69,5 +76,5 @@ export default {
 
 <style scoped lang="sass">
 .input-field
-  width: 380px !important
+  // width: 380px !important
 </style>
